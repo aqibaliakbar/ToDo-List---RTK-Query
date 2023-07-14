@@ -8,20 +8,20 @@ const TodoList = () => {
   const [newTodo, setNewTodo] = useState("");
 
   const {
-    data: todos, // we are getting the data from the hook and we are renaming it as todos then we have isLoading, is Success, isError, Error || this looks a lot like custom use axios hook
+    data: todos, 
     isLoading,
     isSuccess,
     isError,
     error,
   } = useGetTodosQuery();
 
-  const [addTodo] = useAddTodoMutation(); // we are just getting the functions from these hooks we do not need to wait for isLoading, isSuccess, isError, and all those things that we get from query when we are reading the data, this is something we are doing to data instead of reading it
+  const [addTodo] = useAddTodoMutation(); 
   const [updateTodo] = useUpdateTodoMutation();
   const [deleteTodo] = useDeleteTodoMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo({ userId: 1, title: newTodo, completed: false }); // we put added to do function to work
+    addTodo({ userId: 1, title: newTodo, completed: false }); 
     setNewTodo("");
   };
 
@@ -50,19 +50,19 @@ const TodoList = () => {
     content = todos.map((todo) => {
       //JSON.stringify(todos)
       return (
-        <article key={todo.id}> {/** Each article will have the key which matches the todo.id  */}
-          <div className="todo"> {/* we have dive that holds the input and then is a checkbox and it also holds the label and which is the description and that label has the htmlFor={todo.id} which we also assigning to the id of input so they are linked */}
+        <article key={todo.id}> 
+          <div className="todo">
             <input
               type="checkbox"
               checked={todo.completed}
               id={todo.id}
               onChange={() =>
-                updateTodo({ ...todo, completed: !todo.completed }) // when we change we are calling the updateTodo there we are ...todo spreading the todo and overwriting the completed state because this change is for the checkbox and so that set the completed state to false if it was true and true if it was false
+                updateTodo({ ...todo, completed: !todo.completed }) 
               } 
             />
-            <label htmlFor={todo.id}>{todo.title}</label> {/* Using label here instead of paragraph or span really helps with accessibility as well as it is linked to the checkbox  */}
+            <label htmlFor={todo.id}>{todo.title}</label> 
           </div>
-          <button className="trash" onClick={() => deleteTodo({ id: todo.id })}> {/* It calls the deleteTodo we are passing in the object with id so we got the id and then todo.id  */}
+          <button className="trash" onClick={() => deleteTodo({ id: todo.id })}> 
             <FontAwesomeIcon icon={faTrash} />
           </button>
         </article>

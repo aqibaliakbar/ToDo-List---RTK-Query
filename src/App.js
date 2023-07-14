@@ -1,7 +1,7 @@
-import TodoList from "./features/todos/TodoList"; // this how we typically organize features when we are using redux
+import TodoList from "./features/todos/TodoList";
 
 function App() {
-  return <TodoList />
+  return <TodoList />;
 }
 
 export default App;
